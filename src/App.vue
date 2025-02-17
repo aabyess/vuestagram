@@ -19,6 +19,7 @@
   </div>
 </template>
 
+
 <script>
 import Container from './components/Container.vue';
 import postdata from './assets/postData';
