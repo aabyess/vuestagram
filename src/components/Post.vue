@@ -2,13 +2,13 @@
   <div class="post">
     <div class="post-header">
       <div class="profile"></div>
-      <span class="profile-name">{{insta[0].name}}</span>
+      <span class="profile-name">{{ 게시물.name }}</span>
     </div>
-    <div class="post-body"></div>
+    <div class="post-body" :style="{ backgroundImage : `url(${게시물.postImage})`}"></div>
     <div class="post-content">
-      <p>{{insta[0].likes}}</p>
-      <p><strong>{{insta[0].name}}</strong> {{insta[0].content}}</p>
-      <p class="date">{{insta[0].date}}</p>
+      <p>{{게시물.likes}} Likes</p>
+      <p><strong>{{게시물.name}}</strong> {{게시물.content}}</p>
+      <p class="date">{{게시물.date}}</p>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@
 export default {
     name : 'post',
     props:{
-        insta: Array,
+        게시물: Object,
     }
 };
 </script>

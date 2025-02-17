@@ -9,7 +9,7 @@
     <img src="./assets/logo.svg" class="logo" />
   </div>
 
-  <Container :게시물= '게시물'/>
+  <Container :게시물="게시물" />
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -22,11 +22,12 @@
 <script>
 import Container from './components/Container.vue';
 import postdata from './assets/postData';
+
 export default {
   name : 'App',
   data(){
     return{
-      게시물물 : postdata,
+      게시물 : postdata,
     }
   },
   components :{
