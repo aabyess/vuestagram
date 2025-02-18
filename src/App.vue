@@ -96,6 +96,11 @@ export default {
       this.step++;
     }
   },
+  mounted(){
+    this.emitter.on('작명', (a)=>{
+      console.log(a);
+    });
+  }
   
 };
 </script>
