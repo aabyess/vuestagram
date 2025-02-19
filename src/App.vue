@@ -10,7 +10,7 @@
     <img src="./assets/logo.svg" class="logo" />
   </div>
 
-  <h4>안녕 {{ $store.state.name }}</h4>
+  <!-- <h4>안녕 {{ $store.state.name }}</h4>
   <button @click="$store.commit('이름변경')">버튼</button>
 
   <h4>나이 {{ $store.state.age }}</h4>
@@ -20,7 +20,7 @@
   <button @click="$store.dispatch('getData')">더보기버튼</button>
 
   <p>{{ now2 }} {{ 카운터 }}</p>
-  <button @click="카운터++">버튼</button>
+  <button @click="카운터++">버튼</button> -->
 
   <Container
     @write="작성한글 = $event"
@@ -29,7 +29,7 @@
     :이미지="이미지"
   />
 
-  <button @click="more">더보기</button>
+  <!-- <button @click="more">더보기</button> -->
 
   <div class="footer">
     <ul class="footer-button-plus">
@@ -38,9 +38,9 @@
     </ul>
   </div>
 
-  <button @click="step = 0">버튼0</button>
+  <!-- <button @click="step = 0">버튼0</button>
   <button @click="step = 1">버튼1</button>
-  <button @click="step = 2">버튼2</button>
+  <button @click="step = 2">버튼2</button> -->
 
   <!-- <div v-if="step == 0">내용0</div>
   <div v-if="step == 1">내용1</div>
@@ -62,7 +62,7 @@ export default {
     return {
       게시물: postdata,
       더보기: 0,
-      step: 0,
+      step: 3,
       이미지: "",
       작성한글: "",
       선택한필터: "",
