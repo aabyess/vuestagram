@@ -10,23 +10,37 @@
     <img src="./assets/logo.svg" class="logo" />
   </div>
 
-  <Container @write="작성한글= $event" :게시물="게시물" :step="step" :이미지="이미지" />
+  <h4>안녕 {{ $store.state.name }}</h4>
+  <button @click="$store.commit('이름변경')">버튼</button>
+
+  <h4>나이 {{ $store.state.age }}</h4>
+  <button @click="$store.commit('증가', 10)">버튼</button>
+
+  <p>{{ $store.state.more }}</p>
+  <button @click="$store.dispatch('getData')">더보기버튼</button>
+
+  <p>{{ now2 }} {{ 카운터 }}</p>
+  <button @click="카운터++">버튼</button>
+
+  <Container
+    @write="작성한글 = $event"
+    :게시물="게시물"
+    :step="step"
+    :이미지="이미지"
+  />
 
   <button @click="more">더보기</button>
 
   <div class="footer">
     <ul class="footer-button-plus">
-      <input @change="upload"  type="file" id="file" class="inputfile" />
+      <input @change="upload" type="file" id="file" class="inputfile" />
       <label for="file" class="input-plus">+</label>
     </ul>
   </div>
 
-
-
-
-  <button @click="step =0">버튼0</button>
-  <button @click="step =1">버튼1</button>
-  <button @click="step =2">버튼2</button>
+  <button @click="step = 0">버튼0</button>
+  <button @click="step = 1">버튼1</button>
+  <button @click="step = 2">버튼2</button>
 
   <!-- <div v-if="step == 0">내용0</div>
   <div v-if="step == 1">내용1</div>
@@ -35,78 +49,89 @@
   <button @click="step =1">버튼1</button>
   <button @click="step =2">버튼2</button>
   <div style="margin-top: 500px;"></div> -->
-
 </template>
 
 <script>
-import Container from './components/Container.vue';
-import postdata from './assets/postData';
-import axios from 'axios'
+import Container from "./components/Container.vue";
+import postdata from "./assets/postData";
+import axios from "axios";
 
 export default {
-  name : 'App',
-  data(){
-    return{
-      게시물 : postdata,
-      더보기 : 0,
-      step :0,
-      이미지 :'',
-      작성한글 : '',
-    }
+  name: "App",
+  data() {
+    return {
+      게시물: postdata,
+      더보기: 0,
+      step: 0,
+      이미지: "",
+      작성한글: "",
+      선택한필터: "",
+      카운터: 0,
+    };
   },
-  components :{
+  components: {
     Container,
   },
-  methods:{
-    publish(){
+
+  computed : {
+    now2(){
+      return new Date();
+    }, 
+  },
+
+  methods : {
+    now(){
+      return new Date();
+    },  
+
+    publish() {
       var 내게시물 = {
-      name: "Kim Hyun",
-      userImage: "https://picsum.photos/100?random=3",
-      postImage: this.이미지,
-      likes: 36,
-      date: "May 15",
-      liked: false,
-      content: this.작성한글,
-      filter: "perpetua"
-    };
+        name: "Kim Hyun",
+        userImage: "https://picsum.photos/100?random=3",
+        postImage: this.이미지,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.작성한글,
+        filter: this.선택한필터,
+      };
       this.게시물.unshift(내게시물);
       this.step = 0;
     },
-    more(){
-      axios.post('URL', {name:'Kim'})
-      .then()
-      .catch((err)=>{
-        err
-      })
+    more() {
+      axios
+        .post("URL", { name: "Kim" })
+        .then()
+        .catch((err) => {
+          err;
+        });
 
-      axios.get(`https://codingapple1.github.io/vue/more${this.더보기}.json`)
-      .then( (결과) => {
-        console.log(결과.data);
-        this.게시물.push(결과.data);
-        this.더보기++;
-      
-      })
+      axios
+        .get(`https://codingapple1.github.io/vue/more${this.더보기}.json`)
+        .then((결과) => {
+          console.log(결과.data);
+          this.게시물.push(결과.data);
+          this.더보기++;
+        });
     },
-    upload(e){
+    upload(e) {
       let 파일 = e.target.files;
       console.log(파일[0]);
       let url = URL.createObjectURL(파일[0]);
       console.log(url);
       this.이미지 = url;
       this.step++;
-    }
+    },
   },
-  mounted(){
-    this.emitter.on('작명', (a)=>{
-      console.log(a);
+  mounted() {
+    this.emitter.on("박스클릭함", (a) => {
+      this.선택한필터 = a;
     });
-  }
-  
+  },
 };
 </script>
 
 <style>
-
 body {
   margin: 0;
 }
