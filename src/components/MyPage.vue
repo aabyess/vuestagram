@@ -11,12 +11,18 @@
 
 <script>
 import axios from "axios";
-import { onMounted, ref } from "vue";
+import { onMounted,  ref } from "vue";
 
 export default {
   name: "mypage",
-  setup() {
+  props:{
+    one: Number,
+  },
+
+  setup(props) {
     let follower = ref([]);
+    
+    props;
 
     onMounted(() => {
       axios.get("/follower.json").then((a) => {
